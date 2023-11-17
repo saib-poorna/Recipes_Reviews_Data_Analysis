@@ -15,7 +15,7 @@ In the first step of our cleaning and EDA process, we left merged the two datase
 
 In the merged dataset, `recipes_merged`, we filled all rating of 0 with np.NaN. We did this because the 0 rating maybe due to a reviewer leaving an empty review. In filling empty reviews with np.NaN it will remove those values from our analysis. If a recipe was actually bad enough to have someone rate it 0 stars, we are assuming it would also have 1 or 2 star ratings, and so we would still know if it was a bad rating. 
 
-We found the average rating per recipe as a series by grouping by `recipe_id` and getting the `rating` column and aggregating it by the mean. We then turned this series into a dataframe in order to left merge it with `recipes_merged` dataframe. The final dataset was called `recipes` and the first couple of rows are shown below. 
+We found the average rating per recipe as a series by grouping by `recipe_id` and getting the `rating` column and aggregating it by the mean. We then turned this series into a dataframe in order to left merge it with `recipes_merged` dataframe. The final dataset was called `recipes`, and contained a column of average ratings titled `avg_rating`. The first couple of rows are shown below. 
 
 | name                                 |   recipe_id |   minutes |   contributor_id | submitted   | tags                                                                                                                                                                                                                        | nutrition                                    |   n_steps | steps                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | description                                                                                                                                                                                                                                                                                                                                                                       | ingredients                                                                                                                                                                    |   n_ingredients |          user_id | date       |   rating | review                                                                                                                                                                                                                                                                                                                                           |   avg_rating |
 |:-------------------------------------|------------:|----------:|-----------------:|:------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------|----------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------:|-----------------:|:-----------|---------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------:|
@@ -49,6 +49,27 @@ We then plotted the histogram for the distribution of `n_ingredients`. This is s
 <iframe src="assets/n_ingredients_hist.html" width=800 height=600 frameBorder=0></iframe>
 
 The distribution of `n_ingredients` is shown above. It is slightly right skewed, but is approximately normally distributed. 
+
+Next, we examined the distribution of `avg_rating`. The descriptive statistics are shown in the table below. 
+
+|       |   avg_rating |
+|:------|-------------:|
+| count | 81173        |
+| mean  |     4.62536  |
+| std   |     0.640763 |
+| min   |     1        |
+| 25%   |     4.5      |
+| 50%   |     5        |
+| 75%   |     5        |
+| max   |     5        |
+
+The mean of `avg_rating` was 4.63 stars with the minimum average rating being 1 star, and the maximum being 5 stars.
+Next, we plotted the distribution of this variable as a histogram.
+
+<iframe src="assets/avg_rating_hist.html" width=800 height=600 frameBorder=0></iframe>
+
+From the histogram of average ratings we observe that most dishes are highly rated, with the peak of the histogram being at a rating of 5.
+
 
 
 ## Assessment of Missingness
