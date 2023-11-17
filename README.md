@@ -46,6 +46,9 @@ First we started by looking at the descriptive statistics of `n_ingredients`, th
 
 We then plotted the histogram for the distribution of `n_ingredients`. This is shown below. 
 
+<iframe src="assets/n_ingredients_hist.html" width=800 height=600 frameBorder=0></iframe>
+
+The distribution of `n_ingredients` is shown above. It is slightly right skewed, but is approximately normally distributed. 
 
 
 ## Assessment of Missingness
