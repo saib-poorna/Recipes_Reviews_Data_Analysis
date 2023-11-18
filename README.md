@@ -1,6 +1,3 @@
-# Data Analysis: Recipes, Ingredients and their Average Rating 
-This is a data analysis project that explored the recipes and reviews data set from food.com. In this project, we asked whether recipes with more or less ingredients varied in their ratings. This project was completed for DSC 80 at UCSD by Aishwarya Ramesh and Sai Poornasree Balamurugan.
-
 ## Introduction 
 Everyone likes food, and a great way to learn to make new recipes nowadays is online. However, not everyone has the time or money to make recipes that are more intensive and require more ingredients. Yet, these recipes are often quite delicious and fun to make as well. 
 
