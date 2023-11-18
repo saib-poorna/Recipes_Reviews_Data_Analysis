@@ -1,3 +1,5 @@
+# Data Analysis: Recipes, Ingredients and their Average Rating
+
 ## Introduction 
 Everyone likes food, and a great way to learn to make new recipes nowadays is online. However, not everyone has the time or money to make recipes that are more intensive and require more ingredients. Yet, these recipes are often quite delicious and fun to make as well. 
 
