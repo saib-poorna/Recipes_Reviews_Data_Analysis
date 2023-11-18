@@ -100,9 +100,50 @@ We then created a pivot table indexed by the `ing_size_label` i.e. whether it ha
 
 For example, the number of reviews that were 1 star or less for recipes that had a high number of ingredients was 292. From this pivot table, we can see that recipes with lower number of ingredients had more 4 to 5 star reviews as compared to recipes with higher number of ingredients. This could also be because there were more reviews for recipes with lower ingredients than for recipes with higher ingredients. 
 
-
-
-
 ## Assessment of Missingness
+
+### NMAR
+We believe that the `rating` column has potential to be NMAR. This is because we observed that there were many more higher ratings than lower ratings. This could be because people are more likely to review recipes if they actually liked the recipes and people might also be less likely to leave a negative review publicly. For these reasons the missingness of the data could depend on the data itself. 
+
+### Finding dependency of columns 
+First we evaluated the missingness within each column of the dataset. 
+
+|                   |     0 |
+|:------------------|------:|
+| name              |     1 |
+| recipe_id         |     0 |
+| minutes           |     0 |
+| contributor_id    |     0 |
+| submitted         |     0 |
+| tags              |     0 |
+| nutrition         |     0 |
+| n_steps           |     0 |
+| steps             |     0 |
+| description       |   114 |
+| ingredients       |     0 |
+| n_ingredients     |     0 |
+| user_id           |     1 |
+| date              |     1 |
+| rating            | 15036 |
+| review            |    58 |
+| avg_rating        |  2777 |
+| ing_size_label    |     0 |
+| rating_categories |     0 |
+
+It seems like the column with the most missing data is `rating`. We can check its dependency on other columns using a permutation test. A good test statistic to use would be the absolute difference of means.
+
+We defined a function for running a permutation test on the missing data. 
+
+First, we checked whether the missingness of `rating` depended on `n_ingredients`. After running the permutation test we got a p-value of 0.0, which indicated that the missingness of `rating` does depend on `n_ingredients`. 
+
+<iframe src="assets/n_ing_missing.html" width=800 height=600 frameBorder=0></iframe>
+
+From the results of the permutation test, we reject the null hypothesis that there is no relationship between the missingness of `rating` and `n_ingredients` column. We can conclude that `rating` seems to be MAR with respect to `n_ingredients`. The red line above indicates the observed test statistic of 0.16, which is clearly far beyond any of the simulated stats. 
+
+Next, we checked the relationship between the missingness of `rating` and `minutes` column, which is the preparation time for each recipe.  
+
+<iframe src="assets/minutes_missing.html" width=800 height=600 frameBorder=0></iframe>
+
+From the permutation test and figure above, we fail to reject the null hypothesis that the missingness of `rating` does not depend on `minutes`. That is, the missingness of `rating` does not depend on the values of the `minutes` column. We got a p-value of around 0.13, which is greater than 0.05. Clearly, our observed test stat (red line) falls in the range of the simulated test stats.
 
 ## Hypothesis Testing
