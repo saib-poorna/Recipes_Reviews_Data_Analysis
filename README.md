@@ -6,6 +6,8 @@ Everyone likes food, and a great way to learn to make new recipes nowadays is on
 
 We worked with two datasets from food.com, a website where people post and review recipes. RAW_recipes was a dataset of recipes from food.com and aspects of their preparation, including prep time, number of ingredients, number of steps, nutritional value, etc. It had 83,782 rows with each row representing a unique recipe. The second dataset we worked with was RAW_interactions, which was a dataset that contained reviews and ratings for the recipes in RAW_recipes. Ratings were from 0-5 stars. It had 731,927 rows each representing a review of a recipe. 
 
+#### Question: Are the ratings of recipes that used higher numbers of ingredients were significantly different from those that used a lower number of ingredients?
+
 With this data, we sought to ask the question of whether the ratings of recipes that used higher numbers of ingredients were significantly different from those that used a lower number of ingredients. 
 
 The two datasets were later merged, but the columns we used were the `rating` column from RAW_interactions, which we later turned into `avg_rating` by finding the average rating for each recipe, and the `n_ingredients` column from the RAW_recipes dataset.  
@@ -165,3 +167,7 @@ We conducted the permutation test by permuting the `ing_size_label` column. Firs
 <iframe src="assets/hyp_test.html" width=800 height=600 frameBorder=0></iframe>
 
 From the p-value and the graph above, we fail to reject the null hypothesis that there is no significant difference in average rating between recipes with less ingredients or more ingredients. This is because the p-value was 0.3797, which is much higher than the threshold of 0.05. From the graph, we can see that our observed test statistic (red line) is within the bounds of simulated test statistics as well. 
+
+## Conclusion 
+
+Intially we asked the question, of whether the ratings of recipes that used higher numbers of ingredients were significantly different from those that used a lower number of ingredients. Through our data analysis, we were able to conclude that there seems to be no significant difference between the average ratings of recipes with high number of ingredients and low number of ingredients. This could be because the tastiness of the recipe matters more than the number of ingredients used!
