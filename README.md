@@ -147,3 +147,21 @@ Next, we checked the relationship between the missingness of `rating` and `minut
 From the permutation test and figure above, we fail to reject the null hypothesis that the missingness of `rating` does not depend on `minutes`. That is, the missingness of `rating` does not depend on the values of the `minutes` column. We got a p-value of around 0.13, which is greater than 0.05. Clearly, our observed test stat (red line) falls in the range of the simulated test stats.
 
 ## Hypothesis Testing
+
+Null Hypothesis: There is no significant difference in average rating between recipes that have a lower number of ingredients vs a higher number of ingredients. 
+
+Alternate: There is a significant difference in average rating between recipes that have a lower number of ingredients vs a higher number of ingredients. 
+
+We conducted this hypothesis test using permutation. That is, we created a separate dataframe that just had the columns we wanted -- `recipe_id`, `avg_rating` and the `ing_size_label` which represented whether a recipe used a low or high number of ingredients. We also dropped duplicate rows, so each row represented a single recipe. We called this dataframe `hyp_df`, and a few rows are shown below. 
+
+|    |   recipe_id |   avg_rating | ing_size_label   | ing_size_label_shuffled   |
+|---:|------------:|-------------:|:-----------------|:--------------------------|
+|  0 |      333281 |            4 | low              | low                       |
+|  1 |      453467 |            5 | high             | high                      |
+|  2 |      306168 |            5 | low              | high                      |
+
+We conducted the permutation test by permuting the `ing_size_label` column. First, we calculated our observed test statistic. Our test statistic of choice was the absolute difference of means. Then, we permuted the `ing_size_label` column and calculated simulated test statistics under the null. Finally, we calculated the proportion of these simulated statistics that were greater than the observed test statistic, and this was the p-value. A figure showing our simulated test statistics, and our observed test statistic is shown below.
+
+<iframe src="assets/hyp_test.html" width=800 height=600 frameBorder=0></iframe>
+
+From the p-value and the graph above, we fail to reject the null hypothesis that there is no significant difference in average rating between recipes with less ingredients or more ingredients. This is because the p-value was 0.3797, which is much higher than the threshold of 0.05. From the graph, we can see that our observed test statistic (red line) is within the bounds of simulated test statistics as well. 
